@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title>Soundshed - Something wicked this way comes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: black;
+            color: #c0c0c0;
+        }
+
+        .home-intro {
+            background-image: url(images/dark-rider-JmVaNyemtN8-unsplash.jpg);
+            background-size: cover;
+            width: 100%;
+            min-height: 900px;
+            background-position-x: center;
+            padding: 2em;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="home-intro">
+        <h1>Soundshed</h1>
+        <div class="container-fluid">
+            <p> Browse and manage favourite tones, preview or store on your amp, share
+                tones with the community.</p>
+            
+                <p>Notice: This software is currently for testing only and should only be used by technically experienced computer users.</p>
+            <h3>Download</h3>
+            <ul>
+                <li><a href="" id="win_download">Windows</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        (async function getLatestDownloadLink() {
+            let url = "https://api.github.com/repos/soundshed/soundshed-app/releases/latest"
+            const response = await fetch(url, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            let data = await response.json();
+            console.log(JSON.stringify(data));
+
+            let asset_win = data.assets.find(a => a.name.indexOf(".exe") > -1);
+            console.log(JSON.stringify(asset_win));
+
+            document.getElementById("win_download").href = asset_win.browser_download_url;
+
+        })();
+
+    </script>
+</body>
+
+</html>
