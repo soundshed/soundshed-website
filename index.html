@@ -25,19 +25,33 @@
     <div class="home-intro">
         <h1>Soundshed</h1>
         <div class="container-fluid">
-            <p> Browse and manage favourite tones, preview or store on your amp, share
-                tones with the community.</p>
+            <p>Browse and manage favourite tones, preview or store on your amp, share
+                tones with the community. </p>
+
+            <h3>Supported Amps:</h3>
+            <ul>
+                <li>Positive Grid Spark 40</li>
+            </ul>
+
+            <p>Desktop software for Windows, macOS and Linux.</p>
+
+            <p>Notice: This software is currently for testing only and should only be used by technically experienced computer users.</p>
             
-                <p>Notice: This software is currently for testing only and should only be used by technically experienced computer users.</p>
+            <img src="https://github.com/soundshed/soundshed-app/raw/main/docs/screens/ui.png" style="width: 50%";/>
             <h3>Download</h3>
             <ul>
-                <li><a href="" id="win_download">Windows</a></li>
+                <li><a href="#" id="win_download">Windows</a></li>
+                <li><a href="#" id="mac_download">macOS</a></li>
+                <li><a href="#" id="linux_download">Linux</a></li>
             </ul>
         </div>
     </div>
 
     <script>
         (async function getLatestDownloadLink() {
+
+            // fetch latest download links from github
+
             let url = "https://api.github.com/repos/soundshed/soundshed-app/releases/latest"
             const response = await fetch(url, {
                 headers: {
@@ -46,12 +60,22 @@
             });
 
             let data = await response.json();
-            console.log(JSON.stringify(data));
 
             let asset_win = data.assets.find(a => a.name.indexOf(".exe") > -1);
-            console.log(JSON.stringify(asset_win));
+            if (asset_win) {
+                document.getElementById("win_download").href = asset_win.browser_download_url;
+            }
 
-            document.getElementById("win_download").href = asset_win.browser_download_url;
+            let asset_mac = data.assets.find(a => a.name.indexOf("macos") > -1);
+            if (asset_mac) {
+                document.getElementById("mac_download").href = asset_win.browser_download_url;
+            }
+
+            let asset_linux = data.assets.find(a => a.name.indexOf("linux") > -1);
+            if (asset_linux) {
+                document.getElementById("linux_download").href = asset_linux.browser_download_url;
+            }
+
 
         })();
 
