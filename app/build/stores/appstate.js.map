@@ -1,0 +1,1 @@
+{"version":3,"file":"appstate.js","sourceRoot":"","sources":["../../src/stores/appstate.ts"],"names":[],"mappings":";;;AAAA,yCAAkC;AAErB,QAAA,aAAa,GAAG,IAAI,iBAAK,CAAC;IACnC,cAAc,EAAE,KAAK;IACrB,gBAAgB,EAAE,KAAK;IACvB,YAAY,EAAE,IAAI;IAClB,iBAAiB,EAAE,KAAK;IACxB,QAAQ,EAAE,IAAI;IACd,OAAO,EAAE,IAAI;CAChB,CAAC,CAAC"}

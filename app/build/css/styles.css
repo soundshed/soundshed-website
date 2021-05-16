@@ -1,0 +1,255 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+@font-face {
+    font-family: "digital";
+    src: url("fonts/digital_7/Digital-7.woff2") format("woff2"), url("fonts/digital_7/Digital-7.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    background-color: rgb(39, 38, 38);
+    color: whitesmoke;
+    padding-top: 1em;
+}
+
+a,
+a:visited {
+    color: white;
+}
+h1 {
+    font-size: 140%;
+}
+
+.preset-name {
+    font-family: "digital";
+    background-color: rgba(0, 0, 0, 0.473);
+    padding: 0.4em 0.2em;
+    color: rgb(252, 235, 0);
+    text-shadow: 2px 2px 2px rgba(128, 128, 128, 0.644);
+}
+
+.control-strip {
+    background-color: rgba(0, 0, 0, 0.596);
+    padding: 1em;
+    border-radius: 8px;
+    border: 1px solid rgb(99, 72, 0);
+}
+
+.fx {
+    box-shadow: -1px 1px 9px 0px #020202cf;
+    background-color: #2d2d2da9;
+    background: linear-gradient(141deg, rgba(65, 65, 65, 1) 0%, rgba(0, 0, 0, 1) 47%, rgba(56, 56, 56, 1) 100%);
+    padding-bottom: 1em;
+    margin-right: 1em;
+    width: 160px;
+    min-height: 800px;
+    vertical-align: top;
+}
+.fx .preset-name {
+    color: #cacaca;
+}
+
+.fx .fx-controls {
+    margin-left: 30%;
+}
+
+.fx label,
+.control-label {
+    display: block;
+    font-size: 0.6em;
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+    color: #9c9c9c;
+    font-weight: bold;
+}
+
+.fx select {
+    margin-left: 0;
+    border: none;
+    background: #2f2f2f;
+    box-shadow: 1px 0px 4px 3px #080808;
+    color: #d2d2d2;
+    font-size: 80%;
+    margin: 0.6em;
+    min-width: 140px;
+}
+
+.fx .bg-success {
+    box-shadow: 0px 1px 8px 6px #319a218c;
+    text-shadow: 2px 2px 0px #000;
+    margin-left: 1em;
+}
+.fx .bg-danger {
+    text-shadow: 2px 2px 0px #000;
+    margin-left: 1em;
+}
+.container {
+    margin-left: 0;
+}
+label.fx-type {
+    display: block;
+    font-size: 0.6em;
+    margin-left: 2em;
+    color: darkkhaki;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1em;
+}
+
+.tone {
+    min-width: 100px;
+    box-shadow: -1px 1px 9px 0px #020202cf;
+    padding: 0.4em;
+}
+
+.tone .preset-name {
+    color: aliceblue;
+}
+
+.tone label {
+    display: block;
+    font-size: 1em;
+    color: darkkhaki;
+    font-weight: bold;
+}
+
+.nav-tabs .nav-link {
+    color: #dee2e6;
+}
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #2d2d2d;
+    border-color: #5a5a5a;
+}
+.nav-tabs {
+    border-bottom: 1px solid #5a5a5a;
+}
+
+.home-intro {
+    background-image: url(/images/dark-rider-JmVaNyemtN8-unsplash.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 900px;
+    overflow-y: auto;
+    background-position-x: center;
+    padding: 2em;
+}
+
+.tones-intro {
+    background-image: url(/images/luana-azevedo-qSozrp4vyaA-unsplash.jpg);
+    background-size: cover;
+    width: 100%;
+    min-height: 900px;
+    background-position-x: center;
+    padding: 2em;
+}
+
+.amp-intro {
+    background-image: url(/images/jarrod-reed-LCsz65ObVow-unsplash.jpg);
+    background-size: cover;
+    width: 100%;
+    min-height: 900px;
+    background-position-x: center;
+    padding: 2em;
+}
+
+.about-intro {
+    background-image: url(/images/jarrod-reed-LCsz65ObVow-unsplash.jpg);
+    background-size: cover;
+    width: 100%;
+    min-height: 900px;
+    background-position-x: center;
+    padding: 2em;
+}
+.info {
+    background-color: #2d2d2da9;
+    color: white;
+    padding: 1em;
+}
+
+.modal-content {
+    background-color: #2d2d2dda;
+}
+
+.video-search-result {
+    background-color: #2d2d2da9;
+    color: white;
+    padding: 1em;
+    border-radius: 8px;
+    margin-bottom: 1em;
+}
+
+.nav-section {
+    height: 128px;
+    background-color: #2d2d2da9;
+    padding: 0em;
+    margin-bottom: 1em;
+    min-width: 400px;
+    max-width: 600px;
+    background-position-x: center;
+    background-position-y: center;
+}
+.nav-section a,
+.nav-section a:hover {
+    color: white;
+    text-decoration: none;
+}
+.nav-section h2 {
+    font-size: 18px;
+}
+
+.nav-section.tones {
+    background-image: url(/images/luana-azevedo-qSozrp4vyaA-unsplash.jpg);
+    background-size: cover;
+}
+
+.nav-section.amp {
+    background-image: url(/images/jarrod-reed-LCsz65ObVow-unsplash.jpg);
+    background-size: cover;
+}
+
+.nav-section.jam {
+    background-image: url(/images/dark-rider-JmVaNyemtN8-unsplash.jpg);
+    background-size: cover;
+}
+.section-container {
+    backdrop-filter: blur(18px) grayscale(0.5);
+    height: 100%;
+    width: 100%;
+    padding: 1em;
+    border: 1px solid #ffffff0f;
+}
+a,
+a:hover {
+    text-decoration: none;
+}
+a:hover {
+    color: white;
+    text-shadow: 1px 1px 4px #ffffff8e;
+}
+
+td {
+    vertical-align: top;
+}
+
+.pip-video-control {
+    position: fixed;
+    box-shadow: 2px 2px 2px gainsboro;
+    color: #dddddd;
+    background-color: rgba(58, 58, 58, 0.849);
+    padding: 0.2em;
+    opacity: 1;
+    border: 1px solid black;
+    box-shadow: 3px 3px 20px 2px #11c137;
+    margin-left:50%;
+}
+
+.now-playing {
+    box-shadow: 3px 3px 20px 2px #11c137;
+}
