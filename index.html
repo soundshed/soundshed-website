@@ -2,7 +2,7 @@
 
 <head>
     <title>Soundshed - Something wicked this way comes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <style>
         body {
             background-color: black;
@@ -18,6 +18,29 @@
             padding: 2em;
 
         }
+
+        .section {
+            max-width: 600px;
+
+        }
+
+        h2 {
+            font-size: 1.2em;
+            margin-top: 1em;
+            ;
+        }
+
+        h3 {
+            font-size: 1em;
+        }
+
+        a,
+        a:visited,
+        a:link,
+        a:hover {
+            color: whitesmoke;
+
+        }
     </style>
 </head>
 
@@ -25,25 +48,45 @@
     <div class="home-intro">
         <h1>Soundshed</h1>
         <div class="container-fluid">
-            <p>Browse and manage favourite tones, control your amp, share tones with the community. Jam to video backing tracks.</p>
-            <p>Coming soon: curated backing tracks and lesson videos.</p>
-            <h3>Supported Amps:</h3>
-            <ul>
-                <li>Positive Grid Spark 40</li>
-            </ul>
 
-            <p>Desktop software for Windows, macOS and Linux.</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <p>Browse and manage favourite tones, control your amp, share tones with the community. Jam to video backing tracks.</p>
 
-            <p>Notice: This software is currently for testing only and should only be used by technically experienced computer users.</p>
-            <p>Warning: This software enables some experimental FX not supported by the official Spark app. To avoid crashing the Spark app you should not store presets to your amp if they contain experimental fx.</p>
-            <img src="https://github.com/soundshed/soundshed-app/raw/main/docs/screens/ui.png" style="width: 50%";/>
-            <h3>Download</h3>
-            <ul>
-                <li><a href="#" id="win_download">Windows</a></li>
-                <li><a href="#" id="mac_download">macOS</a></li>
-                <li><a href="#" id="linux_download">Linux</a></li>
-            </ul>
-            <p>To discuss the app features and share ideas, visit the <a href="https://github.com/soundshed/soundshed-app/discussions">community discussion on GitHub</a>. You can also check out the code and suggest changes: <a href="https://github.com/soundshed/soundshed-app">https://github.com/soundshed/soundshed-app</a>
+
+                    <h2>Web Version</h2>
+                    <p><span class="badge bg-success">New</span> Try out the web version (beta) - no installation required, use Google Chrome, MS Edge or other web browsers which support Web Bluetooth. iOS/Safari not supported.
+                    </p>
+                    <p>
+                        <a href="https://app.soundshed.com" class="btn btn-primary target="_blank">Open Web App ▶</a>
+                    </p>
+
+
+                </div>
+                <div class="col-md-8">
+                    <img alt="Screenshot of Soundshed App" src="https://github.com/soundshed/soundshed-app/raw/main/docs/screens/ui.png" style="width:inherit;box-shadow:3px 5px 20px 11px #f7f7f769" />
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Supported Amps:</h3>
+                <ul>
+                    <li>Positive Grid Spark 40</li>
+                </ul>
+
+                <p class="small">Note: This software enables some experimental FX not supported by the official Spark app. Storing presets to the amp with unsupported FX may stop the official PG Spark app working until you modify the preset ont he amp.</p>
+
+                <h2>Desktop software for Windows, macOS and Linux.</span></h2>
+
+                <h3>Download</h3>
+                <ul>
+                    <li><a href="#" id="win_download">Windows</a></li>
+                    <li><a href="#" id="mac_download">macOS</a></li>
+                    <li><a href="#" id="linux_download">Linux</a></li>
+                </ul>
+                <p>To discuss the app features and share ideas, visit the <a href="https://github.com/soundshed/soundshed-app/discussions">community discussion on GitHub</a>. You can also check out the code and suggest changes: <a href="https://github.com/soundshed/soundshed-app">https://github.com/soundshed/soundshed-app</a>
+                <p>Developers: Check out the code on <a href="https://github.com/soundshed/soundshed-app">GithHub</a>.</p>
+            </div>
         </div>
     </div>
 
