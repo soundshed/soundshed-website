@@ -1,134 +1,182 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Browse and manage tones, control your amp (Positive Grid Spark 40), share tones with the community. Jam to video backing tracks.">
-    <title>Soundshed - Amp Tones, Video Jam Tracks</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <style>
-        body {
-            background-color: black;
-            color: #c2c2c2;
-        }
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Browse and manage tones, control your amp (Positive Grid Spark 40 and Spark Mini), share tones with the community. Jam to video backing tracks.">
+        <title>Soundshed - Amp Tones, Video Jam Tracks</title>
 
-        .home-intro {
-            background-image: url(images/dark-rider-JmVaNyemtN8-unsplash.jpg);
-            background-size: cover;
-            width: 100%;
-            min-height: 900px;
-            background-position-x: center;
-            padding: 2em;
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <style>
+            body {
+                background-color: black;
+                color: #c2c2c2;
+            }
 
-        }
+            .home-intro {
+                background-image: url("images/dark-rider-JmVaNyemtN8-unsplash.jpg");
+                background-size: cover;
+                width: 100%;
+                min-height: 900px;
+                background-position-x: center;
+                padding: 2em;
 
-        .section {
-            max-width: 600px;
-        }
+            }
 
-        h2 {
-            font-size: 1.2em;
-            margin-top: 1em;
-        }
+            .section {
+                max-width: 600px;
+            }
 
-        h3 {
-            font-size: 1em;
-            margin-top: 1em;
-        }
+            h2 {
+                font-size: 1.2em;
+                margin-top: 1em;
+            }
 
-        a,
-        a:visited,
-        a:link,
-        a:hover {
-            color: whitesmoke;
-        }
+            h3 {
+                font-size: 1em;
+                margin-top: 1em;
+            }
 
-        .small {
-            color: #888888;
-            font-size: 70%;
-        }
-    </style>
-</head>
+            a,
+            a:hover,
+            a:link,
+            a:visited {
+                color: whitesmoke;
+            }
 
-<body>
-    <div class="home-intro">
+            .small {
+                color: #888888;
+                font-size: 70%;
+            }
+        </style>
+    </head>
 
-        <div class="container-fluid">
-            <h1 class="display-3">Soundshed</h1>
-            <div class="row">
-                <div class="col-md-4">
-                    <p class="lead">Browse and manage favourite tones, control your amp, share tones with the community. Jam to video backing tracks.</p>
-                    <h3>Supported Amps:</h3>
+    <body>
+        <div class="home-intro">
+
+            <div class="container-fluid">
+
+                <h1 class="display-3">Soundshed</h1>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="lead">Browse and manage favourite tones, control your amp, jam to video backing tracks, learn chords and scales.</p>
+                        <h3>Supported Amps:</h3>
+                        <ul>
+                            <li>Positive Grid Spark 40</li>
+                            <li>Positive Grid Spark Mini</li>
+                        </ul>
+
+                        <h2>Web Version</h2>
+                        <p>
+                            Try out the web version using Google Chrome, MS Edge or other web browsers which support Web Bluetooth. Firefox and Safari do not support Web Bluetooth and are not compatible.
+                    </p>
+                        <p>
+                            <a href="https://app.soundshed.com" class="btn btn-primary" target="_blank">Open Web App ▶</a>
+                        </p>
+
+                        <p class="small">Note: This software enables some experimental FX not supported by the official Spark app. Storing presets to the amp with unsupported FX may stop the official PG Spark app working until you replace the preset on the amp.</p>
+
+                    </div>
+                    <div class="col-md-8">
+                        <img alt="Screenshot of Soundshed App" src="https://github.com/soundshed/soundshed-app/raw/main/docs/screens/ui.png" style="width:inherit;box-shadow:3px 5px 20px 11px #f7f7f769"/>
+                    </div>
+                </div>
+
+                <div class="section">
+
+                    <h2>Desktop version for Windows, macOS and Linux</h2>
+
+                    <p>This free software installs as an app on your computer and is an alternative if the web version doesn't work for you. Download the version for your operating system:</p>
                     <ul>
-                        <li>Positive Grid Spark 40</li>
+                        <li>
+                            <a href="#" id="win_download">Windows</a>
+                        </li>
+                        <li>
+                            <a href="#" id="mac_download">macOS</a>
+                        </li>
+                        <li>
+                            <a href="#" id="linux_download">Linux</a>
+                        </li>
                     </ul>
 
-                    <h2>Web Version</h2>
-                    <p><span class="badge bg-success">New</span> Try out the web version (beta) - use Google Chrome, MS Edge or other web browsers which support Web Bluetooth. iOS/Safari not supported.
-                    </p>
-                    <p>
-                        <a href="https://app.soundshed.com" class="btn btn-primary target=" _blank">Open Web App ▶</a>
-                    </p>
-
-                    <p class="small">Note: This software enables some experimental FX not supported by the official Spark app. Storing presets to the amp with unsupported FX may stop the official PG Spark app working until you replace the preset on the amp.</p>
-
                 </div>
-                <div class="col-md-8">
-                    <img alt="Screenshot of Soundshed App" src="https://github.com/soundshed/soundshed-app/raw/main/docs/screens/ui.png" style="width:inherit;box-shadow:3px 5px 20px 11px #f7f7f769" />
+
+                <div class="section">
+
+                    <h2>Other features</h2>
+                    <div class="row" style="width:100%;">
+                        <div class="col-md-6">
+                            <h3>Backing Tracks</h3>
+                            <p> 
+    Search, play and favourite backing tracks, use the in-app player while using the other app features.
+    <img alt="Screenshot of Soundshed App" src="https://github.com/soundshed/soundshed-app/raw/main/docs/screens/jam.png" style="width:inherit;margin:1em;display:block;box-shadow:3px 5px 20px 11px #f7f7f769"/>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Scales and Chords</h3>
+                            <p> 
+                    Learn scales, arpeggios and chords in any key for a wide range of fretted instrument and tunings.
+                    <img alt="Screenshot of Scalex" src="https://github.com/soundshed/soundshed-app/raw/main/docs/screens/scalex.png" style="width:inherit;margin:4em;display:block;box-shadow:3px 5px 20px 11px #f7f7f769"/>
+                            </p>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
 
-            <div class="section">
+                <div class="section">
+                    <h2>Requirements</h2>
+                    <p>Your system must have Bluetooth (BLE) support and be able to pair with the amp. Your system must be able to run the latest version of Google Chrome or MS Edge.</p>
 
-                <h2>Desktop software for Windows, macOS and Linux</span></h2>
+                    <h2>Get Involved</h2>
+                    <p>To discuss the app features and share ideas, visit the <a href="https://github.com/soundshed/soundshed-app/discussions">community discussion on GitHub</a>.</p>
+                    <p>You can also check out the code and suggest changes: <a href="https://github.com/soundshed/soundshed-app">https://github.com/soundshed/soundshed-app</a>
 
-                <p>This free software installs as an app on your computer and is an alternative if the web version doesn't work for you. Download the version for your operating system:</p>
-                <ul>
-                    <li><a href="#" id="win_download">Windows</a></li>
-                    <li><a href="#" id="mac_download">macOS</a></li>
-                    <li><a href="#" id="linux_download">Linux</a></li>
-                </ul>
-                <h2>Get Involved</h2>
-                <p>To discuss the app features and share ideas, visit the <a href="https://github.com/soundshed/soundshed-app/discussions">community discussion on GitHub</a>.</p>
-                <p>You can also check out the code and suggest changes: <a href="https://github.com/soundshed/soundshed-app">https://github.com/soundshed/soundshed-app</a>
-
-                    <p class="small">Spark 40 and Positive Grid are trademarks of <a href="https://positivegrid.com">Positive Grid Limited</a> - Soundshed is not affiliated with or endorsed by Positive Grid.
+                        <p class="small">Spark 40 and Positive Grid are trademarks of <a href="https://positivegrid.com">Positive Grid Limited</a> - Soundshed is not affiliated with or endorsed by Positive Grid.
                         <br><br> Image Credits: Burning Guitar Photo by Dark Rider on Unsplash</p>
-            </div>
-        </div>
-    </div>
+                    </div>
+                </div>
+                <script>
+                    (async function getLatestDownloadLink() {
 
-    <script>
-        (async function getLatestDownloadLink() {
+                        // fetch latest download links from github
 
-            // fetch latest download links from github
+                        let url = "https://api.github.com/repos/soundshed/soundshed-app/releases/latest"
+                        const response = await fetch(url, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
 
-            let url = "https://api.github.com/repos/soundshed/soundshed-app/releases/latest"
-            const response = await fetch(url, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+                        let data = await response.json();
 
-            let data = await response.json();
+                        let asset_win = data
+                            .assets
+                            .find(a => a.name.indexOf(".exe") > -1);
+                        if (asset_win) {
+                            document
+                                .getElementById("win_download")
+                                .href = asset_win.browser_download_url;
+                        }
 
-            let asset_win = data.assets.find(a => a.name.indexOf(".exe") > -1);
-            if (asset_win) {
-                document.getElementById("win_download").href = asset_win.browser_download_url;
-            }
+                        let asset_mac = data
+                            .assets
+                            .find(a => a.name.indexOf("darwin") > -1);
+                        if (asset_mac) {
+                            document
+                                .getElementById("mac_download")
+                                .href = asset_mac.browser_download_url;
+                        }
 
-            let asset_mac = data.assets.find(a => a.name.indexOf("darwin") > -1);
-            if (asset_mac) {
-                document.getElementById("mac_download").href = asset_mac.browser_download_url;
-            }
+                        let asset_linux = data
+                            .assets
+                            .find(a => a.name.indexOf("linux") > -1);
+                        if (asset_linux) {
+                            document
+                                .getElementById("linux_download")
+                                .href = asset_linux.browser_download_url;
+                        }
+                    })();
+                </script>
+            </body>
 
-            let asset_linux = data.assets.find(a => a.name.indexOf("linux") > -1);
-            if (asset_linux) {
-                document.getElementById("linux_download").href = asset_linux.browser_download_url;
-            }
-        })();
-
-    </script>
-</body>
-
-</html>
+        </html>
