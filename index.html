@@ -3,180 +3,574 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Browse and manage tones, control your amp (Positive Grid Spark 40 and Spark Mini), share tones with the community. Jam to video backing tracks.">
-        <title>Soundshed - Amp Tones, Video Jam Tracks</title>
+        <meta name="description" content="Soundshed.com - Professional guitar tools for modern musicians. Neural amp modeling plugins and amp control software for rock and metal guitarists.">
+        <title>Soundshed - Professional Guitar Tools for Modern Musicians</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
         <style>
+            :root {
+                --primary-red: #dc2626;
+                --dark-red: #991b1b;
+                --metal-black: #0a0a0a;
+                --metal-gray: #1f2937;
+                --accent-orange: #ea580c;
+                --text-light: #e5e5e5;
+                --text-gray: #9ca3af;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
             body {
-                background-color: black;
-                color: #c2c2c2;
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+                color: var(--text-light);
+                font-family: 'Roboto Condensed', sans-serif;
+                overflow-x: hidden;
+                line-height: 1.6;
             }
 
-            .home-intro {
-                background-image: url("images/dark-rider-JmVaNyemtN8-unsplash.jpg");
-                background-size: cover;
+            .noise-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
                 width: 100%;
-                min-height: 900px;
-                background-position-x: center;
-                padding: 2em;
-
+                height: 100%;
+                opacity: 0.03;
+                z-index: 1;
+                background-image: 
+                    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px),
+                    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(0,0,0,.1) 35px, rgba(0,0,0,.1) 70px);
+                pointer-events: none;
             }
 
-            .section {
-                max-width: 600px;
+            .main-content {
+                position: relative;
+                z-index: 2;
             }
 
-            h2 {
-                font-size: 1.2em;
-                margin-top: 1em;
+            .navbar {
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(220, 38, 38, 0.3);
+                padding: 1rem 0;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
             }
 
-            h3 {
-                font-size: 1em;
-                margin-top: 1em;
+            .navbar-brand {
+                font-family: 'Oswald', sans-serif;
+                font-size: 2rem;
+                font-weight: 700;
+                color: var(--primary-red) !important;
+                text-transform: uppercase;
+                letter-spacing: -1px;
             }
 
-            a,
-            a:hover,
-            a:link,
-            a:visited {
-                color: whitesmoke;
+            .nav-link {
+                color: var(--text-light) !important;
+                font-weight: 400;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin: 0 0.5rem;
+                transition: all 0.3s ease;
+                border-bottom: 2px solid transparent;
             }
 
-            .small {
-                color: #888888;
-                font-size: 70%;
+            .nav-link:hover {
+                color: var(--primary-red) !important;
+                border-bottom: 2px solid var(--primary-red);
+            }
+
+            .hero-section {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                background: 
+                    radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(234, 88, 12, 0.1) 0%, transparent 50%),
+                    linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero-section::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: 
+                    repeating-linear-gradient(
+                        90deg,
+                        transparent,
+                        transparent 2px,
+                        rgba(220, 38, 38, 0.03) 2px,
+                        rgba(220, 38, 38, 0.03) 4px
+                    );
+                animation: grid-move 20s linear infinite;
+            }
+
+            @keyframes grid-move {
+                0% { transform: translate(0, 0); }
+                100% { transform: translate(4px, 4px); }
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 3;
+            }
+
+            .hero-title {
+                font-family: 'Oswald', sans-serif;
+                font-size: clamp(3rem, 8vw, 6rem);
+                font-weight: 700;
+                color: var(--text-light);
+                text-transform: uppercase;
+                letter-spacing: -2px;
+                margin-bottom: 1rem;
+                text-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+            }
+
+            .hero-subtitle {
+                font-size: clamp(1.2rem, 3vw, 1.8rem);
+                color: var(--text-gray);
+                margin-bottom: 2rem;
+                font-weight: 300;
+            }
+
+            .hero-title .red-text {
+                color: var(--primary-red);
+            }
+
+            .section-title {
+                font-family: 'Oswald', sans-serif;
+                font-size: clamp(2rem, 5vw, 3.5rem);
+                font-weight: 600;
+                color: var(--text-light);
+                text-transform: uppercase;
+                letter-spacing: -1px;
+                margin-bottom: 2rem;
+                position: relative;
+                display: inline-block;
+            }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                width: 100px;
+                height: 3px;
+                background: linear-gradient(90deg, var(--primary-red), var(--accent-orange));
+            }
+
+            .product-card {
+                background: linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.8) 100%);
+                border: 1px solid rgba(220, 38, 38, 0.2);
+                border-radius: 0;
+                padding: 2rem;
+                height: 100%;
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .product-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+                transition: left 0.5s ease;
+            }
+
+            .product-card:hover::before {
+                left: 100%;
+            }
+
+            .product-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--primary-red);
+                box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+            }
+
+            .product-title {
+                font-family: 'Oswald', sans-serif;
+                font-size: 1.8rem;
+                font-weight: 600;
+                color: var(--primary-red);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 1rem;
+            }
+
+            .product-subtitle {
+                color: var(--accent-orange);
+                font-size: 1rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-bottom: 1.5rem;
+                font-weight: 300;
+            }
+
+            .btn-metal {
+                background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+                color: white;
+                border: none;
+                padding: 12px 30px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                border-radius: 0;
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .btn-metal::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s ease;
+            }
+
+            .btn-metal:hover::before {
+                left: 100%;
+            }
+
+            .btn-metal:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 20px rgba(220, 38, 38, 0.4);
+                background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            }
+
+            .btn-metal-outline {
+                background: transparent;
+                color: var(--primary-red);
+                border: 2px solid var(--primary-red);
+                padding: 12px 30px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                border-radius: 0;
+                transition: all 0.3s ease;
+            }
+
+            .btn-metal-outline:hover {
+                background: var(--primary-red);
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 20px rgba(220, 38, 38, 0.4);
+            }
+
+            .feature-list {
+                list-style: none;
+                padding: 0;
+                margin: 1.5rem 0;
+            }
+
+            .feature-list li {
+                padding: 0.5rem 0;
+                color: var(--text-gray);
+                position: relative;
+                padding-left: 25px;
+            }
+
+            .feature-list li::before {
+                content: '▶';
+                position: absolute;
+                left: 0;
+                color: var(--primary-red);
+                font-size: 0.8rem;
+            }
+
+            .products-section {
+                padding: 100px 0;
+                background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            }
+
+            .cta-section {
+                padding: 80px 0;
+                background: 
+                    radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.1) 0%, transparent 70%),
+                    linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+                text-align: center;
+            }
+
+            .screenshot-container {
+                position: relative;
+                margin: 2rem 0;
+            }
+
+            .screenshot-container img {
+                width: 100%;
+                height: auto;
+                border: 2px solid rgba(220, 38, 38, 0.3);
+                box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+                transition: all 0.3s ease;
+            }
+
+            .screenshot-container:hover img {
+                transform: scale(1.02);
+                border-color: var(--primary-red);
+            }
+
+            .coming-soon-badge {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: var(--accent-orange);
+                color: white;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transform: rotate(15deg);
+                z-index: 10;
+            }
+
+            @media (max-width: 768px) {
+                .hero-title {
+                    font-size: clamp(2rem, 8vw, 4rem);
+                }
+                
+                .product-card {
+                    margin-bottom: 2rem;
+                }
+                
+                .navbar-brand {
+                    font-size: 1.5rem;
+                }
             }
         </style>
     </head>
 
     <body>
-        <div class="home-intro">
-
-            <div class="container-fluid">
-
-                <h1 class="display-3">Soundshed</h1>
-                <div class="row">
-                    <div class="col-md-4">
-                        <p class="lead">Browse and manage favourite tones, control your amp, jam to video backing tracks, learn chords and scales.</p>
-                        <h3>Supported Amps:</h3>
-                        <ul>
-                            <li>Positive Grid Spark 40</li>
-                            <li>Positive Grid Spark Mini</li>
+        <div class="noise-overlay"></div>
+        
+        <div class="main-content">
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="#">SOUNDSHED</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#products">Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#guitar">Soundshed Guitar Plugin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#spark">Spark App</a>
+                            </li>
                         </ul>
+                    </div>
+                </div>
+            </nav>
 
-                        <h2>Web Version</h2>
-                        <p>
-                            Try out the web version using Google Chrome, MS Edge or other web browsers which support Web Bluetooth. Firefox and Safari do not support Web Bluetooth and are not compatible.
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="container">
+                    <div class="row align-items-center min-vh-100">
+                        <div class="col-lg-6 hero-content">
+                            <h1 class="hero-title">
+                                PROFESSIONAL<br>
+                                <span class="red-text">GUITAR TOOLS</span><br>
+                                FOR THE<br>
+                                MODERN ERA
+                            </h1>
+                            <p class="hero-subtitle">
+                                Neural amp modeling and intelligent amp control for rock and metal musicians who demand the best tone
+                            </p>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <a href="#products" class="btn btn-metal btn-lg">EXPLORE PRODUCTS</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products" class="products-section">
+                <div class="container">
+                    <div class="text-center mb-5">
+                        <h2 class="section-title">Our Products</h2>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <!-- Soundshed Guitar Product Card -->
+                        <div class="col-lg-6" id="guitar">
+                            <div class="product-card">
+                                <h3 class="product-title">Soundshed Guitar</h3>
+                                <p class="product-subtitle">Neural Amp Modeling Plugin</p>
+                                <p class="text-light mb-4">
+                                    Industry-leading neural amp modeling technology that delivers authentic tube amp tones with unprecedented realism. Built for the modern guitarist who needs studio-quality tone on demand.
+                                </p>
+                                <ul class="feature-list">
+                                    <li>Neural network-based amp modeling</li>
+                                    <li>Studio-grade impulse responses</li>
+                                    <li>Advanced signal processing</li>
+                                    <li>VST/AU/AAX compatibility</li>
+                                    <li>Low latency performance</li>
+                                </ul>
+                                <div class="screenshot-container">
+                                    <div class="coming-soon-badge">COMING SOON</div>
+                                    <img src="https://guitar.soundshed.com/images/hero-screenshot.png" alt="Soundshed Guitar Plugin Interface">
+                                </div>
+                                <div class="mt-4">
+                                    <a href="https://guitar.soundshed.com" class="btn btn-metal" target="_blank">LEARN MORE</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soundshed Spark App Product Card -->
+                        <div class="col-lg-6" id="spark">
+                            <div class="product-card">
+                                <h3 class="product-title">Soundshed Spark App</h3>
+                                <p class="product-subtitle">Amp Control Software</p>
+                                <p class="text-light mb-4">
+                                    Take full control of your Positive Grid Spark 40 and Spark Mini amps. Browse community tones, access experimental effects, and jam to backing tracks with this powerful control software.
+                                </p>
+                                <ul class="feature-list">
+                                    <li>Complete amp control interface</li>
+                                    <li>Community tone browser</li>
+                                    <li>Experimental FX engine</li>
+                                    <li>Video backing track player</li>
+                                    <li>Scales and chords learning tools</li>
+                                </ul>
+                                <div class="screenshot-container">
+                                    <img src="https://github.com/soundshed/soundshed-app/raw/main/docs/screens/ui.png" alt="Soundshed Spark App Interface">
+                                </div>
+                                <div class="mt-4 mb-4">
+                                    <a href="https://app.soundshed.com" class="btn btn-metal" target="_blank">LAUNCH WEB APP</a>
+                                </div>
+                                
+                                <div class="mt-4 pt-4 border-top border-secondary">
+                                    <h4 class="text-light mb-3">Desktop Downloads</h4>
+                                    <p class="text-gray mb-3">Get the desktop version for Windows, macOS and Linux - an alternative if the web version doesn't work for you.</p>
+                                    <div class="d-flex gap-3 flex-wrap">
+                                        <a href="#" id="win_download" class="btn btn-metal-outline">
+                                            <i class="fab fa-windows me-2"></i>Windows
+                                        </a>
+                                        <a href="#" id="mac_download" class="btn btn-metal-outline">
+                                            <i class="fab fa-apple me-2"></i>macOS
+                                        </a>
+                                        <a href="#" id="linux_download" class="btn btn-metal-outline">
+                                            <i class="fab fa-linux me-2"></i>Linux
+                                        </a>
+                                    </div>
+                                    <p class="text-gray small mt-3">
+                                        Note: This software enables some experimental FX not supported by the official Spark app. Storing presets to the amp with unsupported FX may stop the official PG Spark app working until you replace the preset on the amp.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container">
+                    <h2 class="section-title text-center">Ready to Upgrade Your Tone?</h2>
+                    <p class="lead mb-4 text-light">
+                        Join thousands of musicians using Soundshed tools to create professional guitar tones
                     </p>
-                        <p>
-                            <a href="https://app.soundshed.com" class="btn btn-primary" target="_blank">Open Web App ▶</a>
-                        </p>
-
-                        <p class="small">Note: This software enables some experimental FX not supported by the official Spark app. Storing presets to the amp with unsupported FX may stop the official PG Spark app working until you replace the preset on the amp.</p>
-
+                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                        <a href="https://guitar.soundshed.com" class="btn btn-metal-outline btn-lg" target="_blank">GET NOTIFIED FOR SOUNDSHED GUITAR NEWS</a>
                     </div>
-                    <div class="col-md-8">
-                        <img alt="Screenshot of Soundshed App" src="https://github.com/soundshed/soundshed-app/raw/main/docs/screens/ui.png" style="width:inherit;box-shadow:3px 5px 20px 11px #f7f7f769"/>
-                    </div>
+                    <p class="mt-4 text-gray">
+                        <small>Soundshed is committed to providing cutting-edge tools for modern musicians.<br>Follow our journey as we expand our product lineup for the guitar community.</small>
+                    </p>
                 </div>
+            </section>
+        </div>
 
-                <div class="section">
-
-                    <h2>Desktop version for Windows, macOS and Linux</h2>
-
-                    <p>This free software installs as an app on your computer and is an alternative if the web version doesn't work for you. Download the version for your operating system:</p>
-                    <ul>
-                        <li>
-                            <a href="#" id="win_download">Windows</a>
-                        </li>
-                        <li>
-                            <a href="#" id="mac_download">macOS</a>
-                        </li>
-                        <li>
-                            <a href="#" id="linux_download">Linux</a>
-                        </li>
-                    </ul>
-
-                </div>
-
-                <div class="section">
-
-                    <h2>Other features</h2>
-                    <div class="row" style="width:100%;">
-                        <div class="col-md-6">
-                            <h3>Backing Tracks</h3>
-                            <p> 
-    Search, play and favourite backing tracks, use the in-app player while using the other app features.
-    <img alt="Screenshot of Soundshed App" src="https://github.com/soundshed/soundshed-app/raw/main/docs/screens/jam.png" style="width:inherit;margin:1em;display:block;box-shadow:3px 5px 20px 11px #f7f7f769"/>
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <h3>Scales and Chords</h3>
-                            <p> 
-                    Learn scales, arpeggios and chords in any key for a wide range of fretted instrument and tunings.
-                    <img alt="Screenshot of Scalex" src="https://github.com/soundshed/soundshed-app/raw/main/docs/screens/scalex.png" style="width:inherit;margin:4em;display:block;box-shadow:3px 5px 20px 11px #f7f7f769"/>
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2>Requirements</h2>
-                    <p>Your system must have Bluetooth (BLE) support and be able to pair with the amp. Your system must be able to run the latest version of Google Chrome or MS Edge.</p>
-
-                    <h2>Get Involved</h2>
-                    <p>To discuss the app features and share ideas, visit the <a href="https://github.com/soundshed/soundshed-app/discussions">community discussion on GitHub</a>.</p>
-                    <p>You can also check out the code and suggest changes: <a href="https://github.com/soundshed/soundshed-app">https://github.com/soundshed/soundshed-app</a>
-
-                        <p class="small">Spark 40 and Positive Grid are trademarks of <a href="https://positivegrid.com">Positive Grid Limited</a> - Soundshed is not affiliated with or endorsed by Positive Grid.
-                        <br><br> Image Credits: Burning Guitar Photo by Dark Rider on Unsplash</p>
-                    </div>
-                </div>
-                <script>
-                    (async function getLatestDownloadLink() {
-
-                        // fetch latest download links from github
-
-                        let url = "https://api.github.com/repos/soundshed/soundshed-app/releases/latest"
-                        const response = await fetch(url, {
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <script>
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
                         });
+                    }
+                });
+            });
 
-                        let data = await response.json();
+            // Add navbar background on scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+                }
+            });
 
-                        let asset_win = data
-                            .assets
-                            .find(a => a.name.indexOf(".exe") > -1);
-                        if (asset_win) {
-                            document
-                                .getElementById("win_download")
-                                .href = asset_win.browser_download_url;
+            // Fetch latest download links from GitHub
+            (async function getLatestDownloadLink() {
+                try {
+                    let url = "https://api.github.com/repos/soundshed/soundshed-app/releases/latest";
+                    const response = await fetch(url, {
+                        headers: {
+                            'Content-Type': 'application/json'
                         }
+                    });
 
-                        let asset_mac = data
-                            .assets
-                            .find(a => a.name.indexOf("darwin") > -1);
-                        if (asset_mac) {
-                            document
-                                .getElementById("mac_download")
-                                .href = asset_mac.browser_download_url;
-                        }
+                    if (!response.ok) {
+                        console.warn('Failed to fetch download links:', response.status);
+                        return;
+                    }
 
-                        let asset_linux = data
-                            .assets
-                            .find(a => a.name.indexOf("linux") > -1);
-                        if (asset_linux) {
-                            document
-                                .getElementById("linux_download")
-                                .href = asset_linux.browser_download_url;
-                        }
-                    })();
-                </script>
-            </body>
+                    let data = await response.json();
 
-        </html>
+                    // Windows download
+                    let asset_win = data.assets.find(a => a.name.indexOf(".exe") > -1);
+                    if (asset_win) {
+                        document.getElementById("win_download").href = asset_win.browser_download_url;
+                    }
+
+                    // macOS download
+                    let asset_mac = data.assets.find(a => a.name.indexOf("darwin") > -1);
+                    if (asset_mac) {
+                        document.getElementById("mac_download").href = asset_mac.browser_download_url;
+                    }
+
+                    // Linux download
+                    let asset_linux = data.assets.find(a => a.name.indexOf("linux") > -1);
+                    if (asset_linux) {
+                        document.getElementById("linux_download").href = asset_linux.browser_download_url;
+                    }
+                } catch (error) {
+                    console.warn('Error fetching download links:', error);
+                }
+            })();
+        </script>
+    </body>
+</html>
